@@ -39,14 +39,17 @@ fun PantallaDetalleRutina(
         .statusBarsPadding()
     ){
         // Boton de Volver
+        // Ejecuta la accion de volver cuando se presiona
+        IconButton( onClick = { onVolver()}, modifier = Modifier.offset(x = (-12).dp))
 
-        IconButton( onClick = { onVolver()}, modifier = Modifier.offset(x = (-12).dp)) {
+        // El icono de fecha hacia atras por defecto para android
+        {
             Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription ="Volver", tint = GymAppAccent)
         }
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        // Nombre de la rutina
+        // Nombre de la rutina y sus estilos
 
         Text(
             text = nombreRutina,
@@ -56,6 +59,8 @@ fun PantallaDetalleRutina(
         )
 
         Spacer(modifier = Modifier.height(20.dp))
+
+        // Subtitulo de ejercicios y sus estilos
 
         Text(
             text = "Exercises",

@@ -51,9 +51,11 @@ fun PantallaPrincipal(
     // ---------------------------------------------
     // 1. ZONA DE BASE DE DATOS
     // ----------------------------------------------
+    // Con collectAsState() escuchamos los cambios de la base de datos en tiempo real
+    // Al agregar una neuva rutina esta se actualiza automonaticamente
      val rutinas by viewModel.todasLasRutinas.collectAsState(initial = emptyList())
 
-
+    //Scaffold es una estructura  de Material Design que nos permite poner la barras superiores
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -65,7 +67,8 @@ fun PantallaPrincipal(
                 Text(text = "+", fontSize = 24.sp, modifier = Modifier.padding(horizontal = 16.dp))
             }
         },
-        containerColor = GymAppBackground // Tu fondo gris clarito
+        containerColor = GymAppBackground // Da el color gris al fondo
+        // // El Scaffold devuelve  'paddingValues' para saber cuánto espacio ocupan los menus/botones.
     ) { paddingValues ->
 
         Column(
@@ -90,38 +93,38 @@ fun PantallaPrincipal(
 
             Spacer(modifier = Modifier.height(30.dp))
 
-            // Título Principal (Forzado a negro para que no desaparezca)
+            // Título Principal
             Text(
                 text = "Choose a\nWorkout",
                 fontSize = 36.sp,
                 fontWeight = FontWeight.Bold,
                 lineHeight = 40.sp,
-                color = Color.Black
+                color = GymAppAccent
             )
 
             Spacer(modifier = Modifier.height(40.dp))
 
-            // Subtítulo (Forzado a negro)
+            // Subtítulo
             Text(
                 text = "Your Routines",
                 fontSize = 18.sp,
                 fontWeight = FontWeight.SemiBold,
-                color = Color.Black,
+                color =  GymAppAccent,
                 modifier = Modifier.padding(bottom = 16.dp)
             )
 
             // ----------------------------------------
             // 2. ZONA DE LA LISTA (AHORA MISMO SIMULADA)
             // -----------------------------------------
+            // Creamos una lista con lazycolumn
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
                 contentPadding = PaddingValues(bottom = 80.dp) // Para que el botón + no tape el último elemento
             ) {
 
 
-
-                // Si NO está vacía, mostramos las tarjetas con las rutinas
-
+                // Verificamos si la lista esta vacia
+                // Si NO está vacía la lista, mostramos las tarjetas con las rutinas
                 if (rutinas.isEmpty()) {
                     item {
                         Text(
@@ -132,6 +135,8 @@ fun PantallaPrincipal(
                         )
                     }
                 } else {
+                    // Si la lista NO está vacía mostramos las tarjetas con las rutinas
+
                     items(rutinas) { rutina ->
                         RutinaCard(
                             rutina = rutina,
@@ -147,8 +152,10 @@ fun PantallaPrincipal(
     }
 }
 
+// Esta función dibuja el diseno individual de CADA tarjeta de la lista.
 @Composable
 fun RutinaCard(rutina: Rutina, onClick: () -> Unit) {
+    // / Surface es un contenedor que permite dar sombras, bordes y colores de fondo fácilmente
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -158,14 +165,14 @@ fun RutinaCard(rutina: Rutina, onClick: () -> Unit) {
         color = GymAppWhite,
         shadowElevation = 2.dp
     ) {
-        Row(
+        Row( // // Coloca el texto a la izquierda y el botón de Play a la derecha
             modifier = Modifier
                 .padding(horizontal = 24.dp, vertical = 20.dp)
                 .fillMaxSize(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Column {
+            Column { // // Agrupa el título y el subtítulo uno encima del otro
                 Text(
                     text = rutina.nombreRutina,
                     style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
@@ -178,7 +185,7 @@ fun RutinaCard(rutina: Rutina, onClick: () -> Unit) {
                     color = GymAppTextSecondary
                 )
             }
-
+            // Dibuja el circulo con el botón de "Play" a la derecha.
             Surface(
                 shape = RoundedCornerShape(50),
                 color = GymAppAccent,
