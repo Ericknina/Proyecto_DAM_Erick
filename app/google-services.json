@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "746348824436",
+    "project_id": "themethod-739c0",
+    "storage_bucket": "themethod-739c0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:746348824436:android:68db2127118a260f908e21",
+        "android_client_info": {
+          "package_name": "com.example.themethod"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA01eWpqdGcvgdMXk2bHp0ZzHwEV7572pA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

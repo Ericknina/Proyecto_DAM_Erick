@@ -25,15 +25,14 @@ abstract  class FitnessDatabase : RoomDatabase(){
         private var INSTANCE : FitnessDatabase? = null
 
         fun getDatabase(context: Context) : FitnessDatabase{
-            // Devuelve la BD si ya existe si no, usa synchronized para que solo un hilo pueda crearla
             return INSTANCE ?: synchronized(this){
                 val instance = Room.databaseBuilder(
-                    context.applicationContext, // Contexto global de la aplicacion
-                    FitnessDatabase::class.java, //   Clase de la base de datos
-                    "fitness_database" // Nombre de la base de datos
+                    context.applicationContext,
+                    FitnessDatabase::class.java,
+                    "fitness_database"
                 ).build()
-                INSTANCE = instance // Guarda la instancia creada
-                instance // Devuelve la base de datos lista
+                INSTANCE = instance
+                instance
             }
         }
     }

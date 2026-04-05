@@ -2,7 +2,7 @@ package com.example.themethod.data
 
 import androidx.room.Entity
 
-@Entity("tabla_rutina_ejericio)", primaryKeys = ["idRutina", "idEjercicio"])
+@Entity("tabla_rutina_ejercicio", primaryKeys = ["idRutina", "idEjercicio"])
 
 data class RutinaEjercicioCrossRef(
     val idRutina: Int,
