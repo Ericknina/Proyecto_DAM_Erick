@@ -2,6 +2,7 @@ package com.example.themethod.repository
 
 import com.example.themethod.data.EjercicioConDetalles
 import com.example.themethod.data.EjercicioDao
+import com.example.themethod.data.HistorialEntrenamiento
 import com.example.themethod.data.Rutina
 import com.example.themethod.data.RutinaDao
 import com.example.themethod.data.RutinaEjercicioCrossRef
@@ -26,14 +27,16 @@ import kotlinx.coroutines.flow.Flow
         //. 2, Escribir los datos:
         // Creamos la funcion suspend que se encarga de llamar a la funcion del DAO
 
-        suspend fun insertarRutina(rutina: Rutina) {
-            rutinaDao.insertRutina(rutina)
+        suspend fun insertarRutina(rutina: Rutina): Long{
+           return rutinaDao.insertRutina(rutina)
         }
 
-        // 3. BORRAR DATOS (Si añadiste esta función en el DAO antes):
-        // suspend fun borrarRutina(idRutina: Int) {
-        //     rutinaDao.borrarRutina(idRutina)
-        // }
+
+       //
+        suspend fun insertarListaRutinas(rutinas: List<Rutina>) {
+            rutinaDao.insertarListaRutinas(rutinas)
+        }
+
 
 
         // Guardar el "Post-it" con las series, repeticiones y peso
@@ -62,6 +65,18 @@ import kotlinx.coroutines.flow.Flow
             rutinaDao.limpiarEjerciciosDeRutina(rutinaId)
             rutinaDao.eliminarRutinaPorId(rutinaId)
         }
+
+        // Limpia la base de datos
+        suspend fun limpiarBaseDeDatosLocal() {
+            rutinaDao.borrarTodasLasRutinas()
+            rutinaDao.borrarTodasLasRelaciones()
+        }
+
+        suspend fun insertarHistorial(historial: HistorialEntrenamiento) {
+            rutinaDao.insertarHistorial(historial)
+        }
+
+        val elHistorial: Flow<List<HistorialEntrenamiento>> = rutinaDao.obtenerTodoElHistorial()
 
     }
 

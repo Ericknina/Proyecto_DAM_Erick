@@ -41,7 +41,7 @@ fun PantallaBibliotecaEjercicios(
                 contentColor = Color.White,
                 shape = RoundedCornerShape(16.dp) // Bordes redondeados
             ) {
-                Icon(Icons.Default.Add, contentDescription = "Add Exercise")
+                Icon(Icons.Default.Add, contentDescription = "Agregar Ejercicio")
             }
         },
         containerColor = GymAppBackground // Pintamos el fondo de toda la pantalla con tu gris clarito
@@ -62,7 +62,7 @@ fun PantallaBibliotecaEjercicios(
             Spacer(modifier = Modifier.height(10.dp)) // Espacio en blanco
 
             // (Títulos)
-            Text("Library", fontSize = 40.sp, fontWeight = FontWeight.Bold, color = GymAppTextPrimary)
+            Text("Mis Ejercicios", fontSize = 40.sp, fontWeight = FontWeight.Bold, color = GymAppTextPrimary)
             Text("Your exercises", fontSize = 20.sp, color = GymAppTextSecondary, modifier = Modifier.padding(bottom = 16.dp))
 
             //  Aquí se dibujan los ejercicios solo carga los que ves en pantalla para no saturar el móvil.
@@ -101,20 +101,20 @@ fun PantallaBibliotecaEjercicios(
 
         AlertDialog(
             onDismissRequest = { mostrarDialogo = false },
-            title = { Text("New Exercise") },
+            title = { Text("Nuevo Ejercicio") },
             text = {
                 // Las dos cajas para escribir
                 Column {
                     OutlinedTextField(
                         value = nombreInput,
                         onValueChange = { nombreInput = it },
-                        label = { Text("Name (e.g. Leg Press)") }
+                        label = { Text("Nombre(e.g. Leg Press)") }
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     OutlinedTextField(
                         value = grupoInput,
                         onValueChange = { grupoInput = it },
-                        label = { Text("Muscle Group (e.g. Legs)") }
+                        label = { Text("Grupo Muscular(e.g. Espalda)") }
                     )
                 }
             },
@@ -130,13 +130,13 @@ fun PantallaBibliotecaEjercicios(
                             mostrarDialogo = false
                         }
                     }
-                ) { Text("Save", color = GymAppAccent) }
+                ) { Text("Guardar", color = GymAppAccent) }
             },
             // Botón de CANCELAR
             dismissButton = {
                 TextButton(
                     onClick = { mostrarDialogo = false }
-                ) { Text("Cancel", color = Color.Gray) }
+                ) { Text("Cancelar", color = Color.Gray) }
             }
         )
     }

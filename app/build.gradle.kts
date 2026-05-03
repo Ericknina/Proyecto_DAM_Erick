@@ -55,6 +55,8 @@ android {
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.runtime)
+    implementation(libs.foundation)
     implementation(libs.material)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.material3)
@@ -87,4 +89,5 @@ dependencies {
     implementation("androidx.compose.material3:material3") // Para botones y tarjetas modernas
     implementation("androidx.activity:activity-compose:1.8.2") // Para conectar MainActivity con Compose
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0") // Para el ViewModel
+    implementation("androidx.core:core-splashscreen:1.0.1")
 }

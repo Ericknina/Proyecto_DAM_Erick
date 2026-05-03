@@ -22,7 +22,10 @@ data class EjercicioConDetalles(
 interface RutinaDao{
     // Guardar la rutina nueva en la base de datos
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertRutina(rutina: Rutina)
+    suspend fun insertRutina(rutina: Rutina): Long
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertarListaRutinas(rutinas: List<Rutina>)
 
     // Lee las Rutinas
     @Query("SELECT * FROM tabla_rutinas")
@@ -54,4 +57,19 @@ interface RutinaDao{
     // 2. Borramos la rutina en si
     @Query("DELETE FROM tabla_rutinas WHERE idRutina = :rutinaId")
     suspend fun eliminarRutinaPorId(rutinaId: Int)
+
+    // 3. Limpieza de sesion
+    @Query("DELETE FROM tabla_rutinas")
+    suspend fun borrarTodasLasRutinas()
+
+    @Query("DELETE FROM tabla_rutina_ejercicio")
+    suspend fun borrarTodasLasRelaciones()
+
+    // Dao para el historial
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertarHistorial(historial: HistorialEntrenamiento)
+
+    @Query("SELECT * FROM tabla_historial ORDER BY id DESC")
+    fun obtenerTodoElHistorial(): Flow<List<HistorialEntrenamiento>>
+
 }

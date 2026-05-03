@@ -58,7 +58,7 @@ fun PantallaCrearRutina(
 
         // Título
         Text(
-            text = "Create New\nWorkout",
+            text = "Crear Rutina",
             fontSize = 36.sp,
             fontWeight = FontWeight.Bold,
             lineHeight = 40.sp,
@@ -71,7 +71,7 @@ fun PantallaCrearRutina(
         OutlinedTextField(
             value = nombreInput,
             onValueChange = { nombreInput = it },
-            label = { Text("Workout Name (e.g. Leg Day)", color = Color.Gray) },
+            label = { Text("Nombre del Ejericio (e.g. Leg Day)", color = Color.Gray) },
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(16.dp),
             colors = OutlinedTextFieldDefaults.colors(
@@ -101,7 +101,7 @@ fun PantallaCrearRutina(
             colors = ButtonDefaults.buttonColors(containerColor = GymAppAccent)
         ) {
             // Texto del botón de Guardar rutina
-            Text("Save Workout", color = Color.White, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+            Text("Guardar Ejercicio", color = Color.White, fontSize = 16.sp, fontWeight = FontWeight.Bold)
         }
     }
 }
